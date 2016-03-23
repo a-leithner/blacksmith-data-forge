@@ -43,8 +43,16 @@ namespace BlacksmithData
         private string[] GetFilesWithExtensions(string path, List<string> extensions)
         {
             string[] allFilesInFolder = Directory.GetFiles(path);
-            MessageBox.Show(allFilesInFolder.ToString());
-            return allFilesInFolder.Where(f => extensions.Contains(f.ToUpper().Split('.').Last())).ToArray();
+            string[] selFiles = allFilesInFolder.Where(f => extensions.Contains(f.ToUpper().Split('.').Last())).ToArray();
+            List<string> Files = new List<string>();
+
+            foreach (string s in selFiles)
+            {
+                string[] splitted = s.Split('\\');
+                Files.Add(splitted.Last());
+            }
+
+            return Files.ToArray();
         }
     }
 }
