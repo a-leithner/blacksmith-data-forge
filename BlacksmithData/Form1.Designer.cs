@@ -32,6 +32,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.loadingLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -72,6 +73,18 @@
             this.listView1.Size = new System.Drawing.Size(224, 245);
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // loadingLbl
+            // 
+            this.loadingLbl.AutoSize = true;
+            this.loadingLbl.Location = new System.Drawing.Point(83, 9);
+            this.loadingLbl.Name = "loadingLbl";
+            this.loadingLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.loadingLbl.Size = new System.Drawing.Size(153, 13);
+            this.loadingLbl.TabIndex = 5;
+            this.loadingLbl.Text = "Processing files for startup...";
+            this.loadingLbl.Visible = false;
             // 
             // Form1
             // 
@@ -79,6 +92,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(248, 388);
+            this.Controls.Add(this.loadingLbl);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
@@ -98,6 +112,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Label loadingLbl;
     }
 }
 
