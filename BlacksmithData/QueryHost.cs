@@ -34,13 +34,12 @@ namespace BlacksmithData
                 if (nType == XmlNodeType.Element)
                 {
                     string name = txtReader.Name.ToString();
-                    MessageBox.Show(name);
                     if (name == "control")
                     {
                         Keys = new List<string>();
                         Values = new List<string>();
 
-                        /*Keys.Add("name");
+                        Keys.Add("name");
                         Values.Add(txtReader.GetAttribute("name"));
 
                         Keys.Add("type");
@@ -58,22 +57,23 @@ namespace BlacksmithData
                         Keys.Add("fontsize");
                         Values.Add(txtReader.GetAttribute("fontsize"));
 
-                        Keys.Add("binding");
+                        Keys.Add("data-binding");
                         Values.Add(txtReader.GetAttribute("binding"));
 
                         Keys.Add("size");
                         Values.Add(txtReader.GetAttribute("size"));
 
                         Keys.Add("position");
-                        Values.Add(txtReader.GetAttribute("position"));*/
+                        Values.Add(txtReader.GetAttribute("position"));
                     }
                 }
                 else if (nType == XmlNodeType.Attribute)
                 {
-                    MessageBox.Show(txtReader.Value.ToString());
+                    MessageBox.Show("ATTRIBUTE!");
 
                     if (Keys != null)
                     {
+                        MessageBox.Show("KEYS != null");
                         Keys.Add(txtReader.Name.ToString());
                         Values.Add(txtReader.Value.ToString());
                     }
@@ -103,6 +103,7 @@ namespace BlacksmithData
             string posi = values[keys.IndexOf("position")];
             string[] SIZE = size.Split(',');
             string[] POSI = posi.Split(',');
+            FontStyle fs = new FontStyle();
 
             Control ctrl = null;
 
@@ -123,6 +124,29 @@ namespace BlacksmithData
                     break;
             }
 
+            switch (weig)
+            {
+                case "Regular":
+                    fs = FontStyle.Regular;
+                    break;
+                case "Bold":
+                    fs = FontStyle.Bold;
+                    break;
+                case "Italic":
+                    fs = FontStyle.Italic;
+                    break;
+                case "Strikeout":
+                    fs = FontStyle.Strikeout;
+                    break;
+                case "Underline":
+                    fs = FontStyle.Underline;
+                    break;
+                default:
+                    MessageBox.Show("No recognized font weight found in Object \"" + name + "\"!", "Parser Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+            }
+
+            ctrl.Font = new Font(font, Convert.ToInt16(fsiz), fs);
             ctrl.Text = text;
             ctrl.Location = new Point(Convert.ToInt16(POSI[0]), Convert.ToInt16(POSI[1]));
             ctrl.Size = new Size(Convert.ToInt16(SIZE[0]), Convert.ToInt16(SIZE[1]));
