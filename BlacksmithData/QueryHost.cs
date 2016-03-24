@@ -114,6 +114,8 @@ namespace BlacksmithData
                     break;
                 case "Entry":
                     ctrl = new TextBox();
+                    ctrl.Enter += tbEnter;
+                    ctrl.Leave += tbLeave;
                     break;
                 case "Label":
                     ctrl = new Label();
@@ -152,6 +154,18 @@ namespace BlacksmithData
             ctrl.Size = new Size(Convert.ToInt16(SIZE[0]), Convert.ToInt16(SIZE[1]));
 
             Controls.Add(ctrl);
+        }
+
+        void tbEnter (object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.BackColor = Color.Beige;
+        }
+
+        void tbLeave (object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.BackColor = Color.White;
         }
     }
 }
